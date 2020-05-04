@@ -18,7 +18,7 @@ import numpy as np
 
 # External function for easier numba support and serialization
 def get_video_from_frame(frame, cache_dir, sample_delta):
-    return cv2.imread(os.path.join(cache_dir, str(frame * (sample_delta)) + ".jpg"), cv2.IMREAD_COLOR).astype(np.int8)
+    return cv2.imread(os.path.join(cache_dir, str(frame * (sample_delta)) + ".jpg"), cv2.IMREAD_COLOR).astype(np.uint8)
 
 class VCL:
     """Uses CPU to preprocess video and saves them as jpg. Uses cv2 as backend."""
