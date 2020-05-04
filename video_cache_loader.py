@@ -14,10 +14,11 @@ import hashlib
 
 # External
 import cv2
+import numpy as np
 
 # External function for easier numba support and serialization
 def get_video_from_frame(frame, cache_dir, sample_delta):
-    return cv2.imread(os.path.join(cache_dir, str(frame * (sample_delta)) + ".jpg"), cv2.IMREAD_COLOR)
+    return cv2.imread(os.path.join(cache_dir, str(frame * (sample_delta)) + ".jpg"), cv2.IMREAD_COLOR).astype(np.int8)
 
 class VCL:
     """Uses CPU to preprocess video and saves them as jpg. Uses cv2 as backend."""
@@ -32,7 +33,7 @@ class VCL:
         self.cache_dir = ""
 
     def get_frame(self, frame):
-        return cv2.imread(os.path.join(self.cache_dir, str(frame * (self.sample_delta)) + ".jpg"), cv2.IMREAD_COLOR)
+        return get_video_from_frame(frame, self.cache_dir, self.sample_delta)
 
     def get_total_frames(self):
         return int((self.raw_frame_count / self.sample_delta) + 1)

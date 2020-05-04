@@ -8,12 +8,12 @@
 # Externals
 import numpy as np
 
-# TimeSlice
+# PJR
 from manifold import get_transform_matrix, create_manifold
 from video_cache_loader import VCL, get_video_from_frame
 
 def basic_render(video_metadata, cache_dir):
-    """Basic render loop where we assume the manifold is a plane intersection."""
+    """Basic render loop where render viewport manifold is calculated in manifold.py"""
     v_h = video_metadata["frame_height"]
     v_w = video_metadata["frame_width"]
 
